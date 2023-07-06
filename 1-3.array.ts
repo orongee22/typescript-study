@@ -18,3 +18,6 @@ interface Student {
   name: string;
   age: number;
 }
+
+// useState 가 tuple의 아주 좋은 예시
+// const [name, setName] = useState<string>("Yerina");
