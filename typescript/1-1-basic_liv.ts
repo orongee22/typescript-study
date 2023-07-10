@@ -20,6 +20,7 @@ let notSure: unknown
 // 어떤 것이든 넣을 수 있는 타입! 
 // 타입검사가 느슨하다보니 예기치 못한 문제가 발생할 수 있음. 
 // https://developer-talk.tistory.com/198
+// config에서 "noImplicitAny": false, 설정하면 any를 쓸 수 없음
 let anything: any
 
 // 📌 void
