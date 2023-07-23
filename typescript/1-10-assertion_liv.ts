@@ -6,6 +6,9 @@
   const result = jsStrFunc();
   console.log((result as string).length) // 5
 
+  // ⭐️ tip! 
+  console.log((result as unknown as string).length) // 5
+
   function jsNumFunc(): any {
     return 2
   }
