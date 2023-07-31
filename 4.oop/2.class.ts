@@ -44,8 +44,8 @@
 	}
 	class CoffeeMaker {
 		// BEANS_GRAMM_PER_SHOT: number = 7; // 멤버 변수
-		static BEANS_GRAMM_PER_SHOT: number = 7;
-		coffeeBeans: number = 0;
+		private static BEANS_GRAMM_PER_SHOT: number = 7;
+		private coffeeBeans: number = 0;
 
 		constructor(coffeeBeans: number) {
 			this.coffeeBeans = coffeeBeans;
@@ -67,10 +67,18 @@
 			}
 				
 		}
+
+		addCoffeeBeans(amount: number) {
+			if(amount < 0) {
+				throw new Error("커피콩을 넣어주세여")
+			}
+			this.coffeeBeans = amount;
+		}
 	}
  
 	const maker = new CoffeeMaker(10);
 	console.log(maker);
 	const maker2 = CoffeeMaker.makeMachine(10);
 	console.log(maker2);
+
 }
