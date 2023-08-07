@@ -1,3 +1,5 @@
+import { log } from 'console';
+
 {
   type CoffeeCups = {
     shots: number;
@@ -13,6 +15,7 @@
   class CoffeeMaker {
     static BEANS_GRAM_PER_SHOT = 7; // class level : 클래스와 연결이 되어있기 때문에 오브젝트마다 만들어지거나 생성되지 않음
     coffeeBeans: number = 0; // instance(object) level :
+    private coffee: string = '';
 
     constructor(coffeBeans: number) {
       this.coffeeBeans = coffeBeans;
@@ -22,24 +25,22 @@
       return new CoffeeMaker(coffeeBeans);
     }
 
-    makeCoffee(shots: number): CoffeeCups {
+    makeCoffee(shots: number, hasMilk: boolean): string {
       if (this.coffeeBeans < shots * CoffeeMaker.BEANS_GRAM_PER_SHOT) {
         throw new Error('not enough coffee beans!');
       }
 
       this.coffeeBeans -= shots * CoffeeMaker.BEANS_GRAM_PER_SHOT;
-      return {
-        shots,
-        hasMilk: false,
-      };
+      this.coffee = hasMilk
+        ? `${shots} 샷이 들어간 달콤한 라떼입니다.`
+        : `${shots} 샷이 들어간 아메리카노 입니다.`;
+      return this.coffee;
     }
   }
 
-  const maker = new CoffeeMaker(32);
-  console.log(maker);
-  const coffee = maker.makeCoffee(2);
-  console.log('coffee: ', coffee);
+  const maker = new CoffeeMaker(100);
 
-  const maker1 = CoffeeMaker.makeMachine(3);
+  const maker1 = CoffeeMaker.makeMachine(1000);
+  console.log(maker1.makeCoffee(2, true));
   console.log(maker1);
 }

@@ -22,11 +22,13 @@
       return new CoffeeMaker(coffeeBeans);
     }
 
-    fillCoffeeCeans(beans: number) {
+    fillCoffeeBeans(beans: number) {
+      console.log('beans: ', beans);
       if (beans < 0) {
         throw new Error('value for beans should be greater than 0');
       }
       this.coffeeBeans += beans;
+      console.log(this.coffeeBeans);
     }
 
     makeCoffee(shots: number): CoffeeCups {
@@ -42,7 +44,8 @@
     }
   }
 
-  const maker = CoffeeMaker.makeMachine(32);
+  const maker = CoffeeMaker.makeMachine(7);
+  maker.fillCoffeeBeans(-7);
 
   // maker.coffeeBeans = 36;
   // maker.coffeeBeans = -24; // invalid 오브젝트 상태를 유효하지 않게 만듦
