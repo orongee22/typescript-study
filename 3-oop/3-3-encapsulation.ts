@@ -84,3 +84,52 @@
 }
 
 // encapsulation :: 클래스를 만들 때 외부에서 접근할 수 있는것은 무엇인지 내부적으로만 가지고 있어야 하는 것은 무엇인지 잘 생각해서 디자인해야함..!!
+
+
+// Getter & Setter
+{
+  class User {
+    private firstName: String;
+    private lastName: string;
+    // fullName: string;
+    get fullName(): string {
+      return `${this.firstName} ${this.lastName}`
+    } // get으로 하면 일반 멤버변수처럼 접근 가능함!!
+    constructor(firstName: string, lastName: string) {
+      this.firstName = firstName;
+      this.lastName = lastName;
+      // this.fullName = `${firstName} ${lastName}`
+    }
+  }
+  const user = new User ('Steve', 'Jobs')
+  console.log(user.fullName)
+  // user.firstName = 'Ellie'
+  // console.log(user.firstName) // Ellie
+  console.log(user.fullName) // Steve Jobs
+  // 왜 풀네임은 스티브 잡스일까?
+  // ㄴ> user의 firstName, lastNAme이 바뀌어도 fullName이 재 할당 되지 않기 때문
+  // 이럴 때 getter가 중요함..!!
+
+// User클래스와 똑같음..!! 여기가 더 간단해!!
+  class User2 {
+    get fullName(): string {
+      return `${this.firstName} ${this.lastName}`
+    } 
+    private internalAge = 4;
+    get age(): number {
+      return this.internalAge;
+    }
+    set age(num: number) {
+      if(num < 0 ) {
+        throw Error('unusable number')
+      }
+      this.internalAge = num;
+    }
+    constructor(private firstName: string, private lastName: string) {
+    } 
+    // ⭐생성자에 접근제어자를 설정하면 바로 멤버변수로 설정됨!
+  }
+  const user2 = new User2('Eille', 'Coding')
+  user2.age = 6;
+}
+// end getter & setter
